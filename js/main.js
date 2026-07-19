@@ -82,6 +82,27 @@
     });
   }
 
+  // ---- Scroll-spy for one-page nav (home page) ----
+  var spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  if (spyLinks.length && "IntersectionObserver" in window) {
+    var sections = spyLinks
+      .map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); })
+      .filter(Boolean);
+    if (sections.length) {
+      var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var id = entry.target.id;
+            spyLinks.forEach(function (a) {
+              a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+            });
+          }
+        });
+      }, { rootMargin: "-45% 0px -50% 0px", threshold: 0 });
+      sections.forEach(function (s) { spy.observe(s); });
+    }
+  }
+
   // ---- Footer year ----
   var yr = document.getElementById("year");
   if (yr) yr.textContent = new Date().getFullYear();

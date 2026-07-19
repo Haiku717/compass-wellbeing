@@ -87,6 +87,9 @@ li { margin-bottom: .5em; }
 .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
 .narrow { max-width: var(--maxw-narrow); }
 .section { padding: clamp(60px, 8.5vw, 118px) 0; position: relative; }
+/* offset anchor targets so the sticky header doesn't cover section headings */
+#home, #services, #counselling, #supervision, #online-therapy, #about, #pricing, #contact { scroll-margin-top: 92px; }
+#home { scroll-margin-top: var(--header-h); } /* returns to true top under the sticky header */
 .section-sm { padding: clamp(40px, 6vw, 72px) 0; }
 .text-center { text-align: center; }
 
@@ -357,8 +360,11 @@ li { margin-bottom: .5em; }
 
 /* ---------- Contact ---------- */
 .contact-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(36px, 5vw, 56px); align-items: start; }
+.contact-grid > * { min-width: 0; } /* allow columns to shrink below content min-size */
 .contact-info ul { padding: 0; margin: 0 0 24px; }
-.contact-info li { display: flex; gap: 15px; align-items: flex-start; list-style: none; margin-bottom: 22px; }
+.contact-info li { display: flex; gap: 15px; align-items: flex-start; list-style: none; margin-bottom: 22px; min-width: 0; }
+.contact-info li > span { min-width: 0; }
+.contact-info .ci-value { overflow-wrap: anywhere; word-break: break-word; }
 .contact-info .ci-icon { width: 46px; height: 46px; border-radius: 12px; flex: none; background: var(--moss-100); color: var(--forest-700); display: flex; align-items: center; justify-content: center; }
 .contact-info .ci-icon svg { width: 22px; height: 22px; }
 .contact-info .ci-label { font-size: 0.82rem; color: var(--ink-300); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 2px; }
