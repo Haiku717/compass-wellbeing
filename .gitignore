@@ -1,0 +1,9 @@
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Project notes (not part of the website)
+CLAUDE.md
